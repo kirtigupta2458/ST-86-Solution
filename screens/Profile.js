@@ -60,7 +60,7 @@ export default class Profile extends Component {
     await firebase
       .database()
       .ref("/users/" + firebase.auth().currentUser.uid)
-      .on("value", function(snapshot) {
+      .on("value", function (snapshot) {
         theme = snapshot.val().current_theme;
         name = `${snapshot.val().first_name} ${snapshot.val().last_name}`;
         image = snapshot.val().profile_picture;
@@ -88,7 +88,7 @@ export default class Profile extends Component {
               ></Image>
             </View>
             <View style={styles.appTitleTextContainer}>
-              <Text style={styles.appTitleText}>Story Telling App</Text>
+              <Text style={styles.appTitleText}>Storytelling App</Text>
             </View>
           </View>
           <View style={styles.screenContainer}>
