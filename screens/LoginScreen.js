@@ -126,7 +126,7 @@ export default class LoginScreen extends Component {
     }
   };
 
-  render() {
+   render() {
     if (!this.state.fontsLoaded) {
       return <AppLoading />;
     } else {
@@ -145,18 +145,18 @@ export default class LoginScreen extends Component {
               style={styles.button}
               onPress={() => this.signInWithGoogleAsync()}
             >
-            
-              
-              
-              
+              <Image
+                source={require("../assets/google_icon.png")}
+                style={styles.googleIcon}
+              ></Image>
+              <Text style={styles.googleText}>Sign in with Google</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.cloudContainer}>
-           
-            
-            
-            
-            
+            <Image
+              source={require("../assets/cloud.png")}
+              style={styles.cloudImage}
+            ></Image>
           </View>
         </View>
       );
