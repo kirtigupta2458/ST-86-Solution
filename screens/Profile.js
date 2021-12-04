@@ -56,7 +56,21 @@ export default class Profile extends Component {
   }
 
   async fetchUser() {
-   
+   let theme, name, image;
+    await firebase
+      .database()
+      .ref("/users/" + firebase.auth().currentUser.uid)
+      .on("value", function (snapshot) {
+        theme = snapshot.val().current_theme;
+        name = `${snapshot.val().first_name} ${snapshot.val().last_name}`;
+        image = snapshot.val().profile_picture;
+      });
+    this.setState({
+      light_theme: theme === "light" ? true : false,
+      isEnabled: theme === "light" ? false : true,
+      name: name,
+      profile_image: image
+    });
     
     
     
@@ -68,7 +82,18 @@ export default class Profile extends Component {
     } else {
       return (
         <View style={styles.container}>
-          <Text>Profile</Text>
+          <SafeAreaView style={styles.droidSafeArea} />
+          <View style={styles.appTitle}>
+            <View style={styles.appIcon}>
+              <Image
+                source={require("../assets/logo.png")}
+                style={styles.iconImage}
+              ></Image>
+            </View>
+            <View style={styles.appTitleTextContainer}>
+              <Text style={styles.appTitleText}>Storytelling App</Text>
+            </View>
+          </View>
         </View>
       );
     }
